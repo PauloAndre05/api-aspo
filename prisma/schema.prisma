@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Agendamento {
+  id               String         @id @default(uuid())
+  dataAgenda       DateTime
+  servico          Servico?       @relation(fields: [servicoId], references: [id])
+  servicoId        String
+  postoAtendimento Posto?         @relation(fields: [postoId], references: [id])
+  postoId          String
+  telefone         String
+  email            String
+  createdAt        DateTime       @default(now())
+  identificacao    identificacao? @relation(references: [BI], fields: [bi])
+  bi               String
+
+  @@map("agendamentos")
+}
+
+model Servico {
+  id          String        @id @default(uuid())
+  nome        String
+  createdAt   DateTime      @default(now())
+  Agendamento Agendamento[]
+
+  @@map("servicos")
+}
+
+model Posto {
+  id          String        @id @default(uuid())
+  nome        String
+  local       String
+  cordenadas  String
+  Agendamento Agendamento[]
+
+  @@map("postos")
+}
+
+model identificacao {
+  BI               String        @id
+  nome             String
+  dataDeNascimento String
+  Agendamento      Agendamento[]
+}
