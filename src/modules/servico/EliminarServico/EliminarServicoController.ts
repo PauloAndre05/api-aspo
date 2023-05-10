@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { EliminarServicoUseCase } from "./EliminarServicoUseCase"
+import { EliminarServicoUseCase } from "./EliminarServicoUseCase";
 
 class EliminarServicoController{
     async handle(req: Request, res: Response){

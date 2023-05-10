@@ -11,8 +11,8 @@ const eliminarServico = new EliminarServicoController();
 const atualizarServico = new AtualizarServicoController();
 
 servicoRouter.post("/", criarServico.handle);
-servicoRouter.get("/listarServico", listarServico.handle);
-servicoRouter.get("/atualizarServico", atualizarServico.handle);
-servicoRouter.delete("/eliminarServico", eliminarServico.handle);
+servicoRouter.get("/", listarServico.handle);
+servicoRouter.post("/atualizar/:id", atualizarServico.handle);
+servicoRouter.delete("/:id", eliminarServico.handle);
 
 export { servicoRouter }

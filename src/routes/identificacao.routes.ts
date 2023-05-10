@@ -11,8 +11,8 @@ const listarIdentificacaoController = new ListarIdentificacaoController();
 const atualizarIdentificacao = new AtualizarIdentificaoController();
 const eliminarIdentificacao = new EliminarIdentificacaoController();
 
-identificacaoRouter.post("/criarIdentificacao", criarIdentificacao.handle);
-identificacaoRouter.get("/listarIdentificacao", listarIdentificacaoController.handle);
-identificacaoRouter.post("/atualizarIdentificacao", atualizarIdentificacao.handle)
-identificacaoRouter.delete("/eliminarIdentificacao", eliminarIdentificacao.handle)
+identificacaoRouter.post("/", criarIdentificacao.handle);
+identificacaoRouter.get("/", listarIdentificacaoController.handle);
+identificacaoRouter.post("/atualizar/:BI", atualizarIdentificacao.handle)
+identificacaoRouter.delete("/:BI", eliminarIdentificacao.handle)
 export { identificacaoRouter }

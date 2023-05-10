@@ -12,8 +12,8 @@ const eliminarPosto = new EliminarPostoController();
 const atualizarPosto = new AtualizarPostoController();
 
 postoRouter.post("/", criarPosto.handle);
-postoRouter.get("/listarPosto", listarPosto.handle);
-postoRouter.get("/atualizarPosto", atualizarPosto.handle);
-postoRouter.delete("/eliminarPosto", eliminarPosto.handle)
+postoRouter.get("/", listarPosto.handle);
+postoRouter.post("/atualizar/:id", atualizarPosto.handle);
+postoRouter.delete("/:id", eliminarPosto.handle);
 
 export { postoRouter }
