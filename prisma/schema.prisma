@@ -20,8 +20,6 @@ model Agendamento {
   telefone         String
   email            String
   createdAt        DateTime       @default(now())
-  identificacao    identificacao? @relation(references: [BI], fields: [bi])
-  bi               String
 
   @@map("agendamentos")
 }
@@ -55,9 +53,4 @@ model Users {
   senha      String @default("1111")
 }
 
-model identificacao {
-  BI               String        @id
-  nome             String
-  dataDeNascimento String
-  Agendamento      Agendamento[]
-}
+
