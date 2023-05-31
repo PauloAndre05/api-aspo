@@ -15,5 +15,4 @@ postoRouter.post("/", criarPosto.handle);
 postoRouter.get("/", listarPosto.handle);
 postoRouter.post("/atualizar/:id", atualizarPosto.handle);
 postoRouter.delete("/:id", eliminarPosto.handle);
-
 export { postoRouter }

@@ -7,12 +7,12 @@ import { EliminarIdentificacaoController } from "../modules/identificacao/Elimin
 
 const identificacaoRouter = Router();
 const criarIdentificacao = new IdentificacaoController();
-const listarIdentificacaoController = new ListarIdentificacaoController();
+const listarIdentificacao = new ListarIdentificacaoController();
 const atualizarIdentificacao = new AtualizarIdentificaoController();
 const eliminarIdentificacao = new EliminarIdentificacaoController();
 
 identificacaoRouter.post("/", criarIdentificacao.handle);
-identificacaoRouter.get("/", listarIdentificacaoController.handle);
+identificacaoRouter.get("/listar", listarIdentificacao.handle);
 identificacaoRouter.post("/atualizar/:BI", atualizarIdentificacao.handle)
 identificacaoRouter.delete("/:BI", eliminarIdentificacao.handle)
-export { identificacaoRouter }
+export { identificacaoRouter }  

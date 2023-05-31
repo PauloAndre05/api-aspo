@@ -14,9 +14,9 @@ model Agendamento {
   id               String         @id @default(uuid())
   dataAgenda       DateTime
   servico          Servico?       @relation(fields: [servicoId], references: [id])
-  servicoId        String
+  servicoId        Int
   postoAtendimento Posto?         @relation(fields: [postoId], references: [id])
-  postoId          String
+  postoId          Int
   telefone         String
   email            String
   createdAt        DateTime       @default(now())
@@ -27,7 +27,7 @@ model Agendamento {
 }
 
 model Servico {
-  id          String        @id @default(uuid())
+  id          Int           @id @default(autoincrement())
   nome        String
   createdAt   DateTime      @default(now())
   Agendamento Agendamento[]
@@ -36,13 +36,23 @@ model Servico {
 }
 
 model Posto {
-  id          String        @id @default(uuid())
+  id          Int           @id @default(autoincrement())
   nome        String
   local       String
   cordenadas  String
+  utilizador  String
+  senha       String        @default("0000")
   Agendamento Agendamento[]
 
   @@map("postos")
+}
+
+model Users {
+  id         String @id @default(uuid())
+  nome       String
+  utilizador String
+  cargo      String
+  senha      String @default("1111")
 }
 
 model identificacao {

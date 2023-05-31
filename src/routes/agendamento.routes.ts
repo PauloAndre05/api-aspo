@@ -11,7 +11,6 @@ const eliminar = new EliminarAgendamentoController();
 const atualizarAgendamento = new AtualizarAgendamentoController();
 
 agendamentosRouter.post("/", criarAgendamento.handle)
-
 agendamentosRouter.get("/", listAgendamento.handle);
 agendamentosRouter.post("/atualizar/:id", atualizarAgendamento.handle);
 agendamentosRouter.delete("/:id", eliminar.handle);

@@ -23,4 +23,4 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction)=>
   })
 })
 
-app.listen(3000, ()=> console.log("SERVER RUNNING IN PORT 3000", ));
+app.listen(3001, ()=> console.log("SERVER RUNNING IN PORT 3001", ));
