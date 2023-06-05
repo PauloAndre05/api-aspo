@@ -1,5 +1,5 @@
 import { Users } from "@prisma/client";
-import { prisma } from "..//..//..//prisma/clint";
+import { prisma } from "../../../prisma/client";
 
 class ListarUsuarioUseCase{
     async execute(): Promise<Users[]>{

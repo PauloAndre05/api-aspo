@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CriarUsuarioUseCase } from '../CriarUsuario/CriarUsuarioUseCase';
-import { prisma } from "../../../prisma/clint";
+import { prisma } from "../../../prisma/client";
 
 class CriarUsuarioController {
   async handle(req: Request, res: Response) {

@@ -40,30 +40,39 @@ model Posto {
   local       String
   cordenadas  String
   Agendamento Agendamento[]
-  Users       Users[]
+  User        User[]
 
   @@map("postos")
 }
 
-model Users {
+model User {
   id      String      @id @default(uuid())
   nome    String
   email   String      @unique
-  cargo   String
-  senha   String
+  senha   String      @default(uuid())
   posto   Posto?      @relation(fields: [postoId], references: [id])
   tipo    TipoUsuario
   postoId String
+  estado  UserState   @default(DESATIVADO)
+
+  @@map("usuarios")
+}
+
+enum UserState {
+  ACTIVADO
+  DESATIVADO
 }
 
 enum TipoUsuario {
-  ADMINISTRADOR
-  USUARIO
+  SUPER_USER
+  DEFAULT_USER
 }
 
-model newslettrs {
+model feedback {
   id       String @id @default(uuid())
   email    String
   nome     String
   mensagem String
+
+  @@map("feedbacks")
 }

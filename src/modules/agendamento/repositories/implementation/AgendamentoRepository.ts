@@ -1,7 +1,7 @@
 import { Agendamento } from "@prisma/client";
 import { IAgendamentoRepository } from "../IAgendamentoRepository";
 import { ICriarAgendamentoDTO } from "../../dtos";
-import { prisma } from "../../../../prisma/clint";
+import { prisma } from "../../../../prisma/client";
 
 
 export class AgendamentoRepository implements IAgendamentoRepository {

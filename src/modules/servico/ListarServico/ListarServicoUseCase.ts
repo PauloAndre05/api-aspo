@@ -1,5 +1,5 @@
 import { Servico } from "@prisma/client";
-import { prisma } from "../../../prisma/clint";
+import { prisma } from "../../../prisma/client";
 
 class ListarServicoUseCase{
     async execute(): Promise<Servico[]>{

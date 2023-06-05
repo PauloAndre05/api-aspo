@@ -1,5 +1,5 @@
 import { newslettrs } from "@prisma/client";
-import { prisma } from "../../../prisma/clint";
+import { prisma } from "../../../prisma/client";
 import { RequestError } from "../../../appErrors/ErrorApi";
 
 class ListarNewsLettrsUseCase{

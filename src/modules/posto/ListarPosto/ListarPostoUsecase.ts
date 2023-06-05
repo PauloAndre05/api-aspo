@@ -1,5 +1,5 @@
 import { Posto } from "@prisma/client";
-import { prisma } from "../../../prisma/clint";
+import { prisma } from "../../../prisma/client";
 
 class ListarPostoUseCase{
     async execute(): Promise<Posto[]>{

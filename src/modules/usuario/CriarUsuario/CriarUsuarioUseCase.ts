@@ -1,5 +1,5 @@
 import { TipoUsuario, Users } from "@prisma/client";
-import { prisma } from "../../../prisma/clint";
+import { prisma } from "../../../prisma/client";
 import { hash } from "bcrypt";
 
 

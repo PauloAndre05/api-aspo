@@ -1,5 +1,5 @@
 import { Users } from "@prisma/client";
-import { prisma } from "../../prisma/clint";
+import { prisma } from "../../prisma/client";
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { IAuthDTO } from "./dtos";
