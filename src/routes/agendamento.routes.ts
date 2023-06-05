@@ -1,17 +1,20 @@
 import { Router } from "express";
-import { AgendamentoController } from "../modules/agendamento/CriarAgendamento/AgendamentoController";
-import { ListarAgendamentoController } from "../modules/agendamento/ListarAgendamento/ListarAgendamentoController";
-import { EliminarAgendamentoController } from "../modules/agendamento/EliminarAgendamento/EliminarAgendamentoController";
-import { AtualizarAgendamentoController } from "../modules/agendamento/AtualizarAgendamento/AtualizarAgendamentoController";
+import { criarAgendamentoController } from "../modules/agendamento/useCases/CriarAgendamento";
+import { eliminarAgendamentoController } from "../modules/agendamento/useCases/EliminarAgendamento";
 
 const agendamentosRouter = Router();
-const criarAgendamento = new AgendamentoController();
-const listAgendamento = new ListarAgendamentoController();
-const eliminar = new EliminarAgendamentoController();
-const atualizarAgendamento = new AtualizarAgendamentoController();
 
-agendamentosRouter.post("/", criarAgendamento.handle)
-agendamentosRouter.get("/", listAgendamento.handle);
-agendamentosRouter.post("/atualizar/:id", atualizarAgendamento.handle);
-agendamentosRouter.delete("/:id", eliminar.handle);
+agendamentosRouter.post("/", (req, res) => {
+    return criarAgendamentoController.handle(req, res);
+});
+
+agendamentosRouter.get("/", (req, res) => {
+
+});
+agendamentosRouter.post("/atualizar/:id", (req, res) => {
+    
+});
+agendamentosRouter.delete("/eliminar/:id", (req, res) => {
+    return eliminarAgendamentoController.handle(req, res);
+});
 export {agendamentosRouter}

@@ -1,16 +1,17 @@
 import { Request, Response } from "express";
-import { AgendamentoUseCase } from "./AgendamentoUseCase";
+import { AtualizarAgendamentoUseCase } from "./AtualizarAgendamentoUseCase";
 
-class AgendamentoController{
+
+class AtualizarAgendamentoController {
+    constructor(private atualizarAgendamentoUseCase: AtualizarAgendamentoUseCase) {}
     async handle(req: Request, res: Response){
+        const { id } = req.params;
         const {dataAgenda, servicoId, postoId, telefone, email} = req.body;
-        console.log(req.body);
-        const agendamento = new AgendamentoUseCase();
-        const id: string = "";
+        const agendamento = new AtualizarAgendamentoUseCase();
         const createdAt: Date = new Date
         const agendamentoFinal = await agendamento.execute({id ,dataAgenda, servicoId, postoId, telefone, email, createdAt});
         return res.status(201).json(agendamentoFinal);
     }
 }
 
-export {AgendamentoController}
+export {AtualizarAgendamentoController}

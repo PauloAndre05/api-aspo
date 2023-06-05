@@ -1,4 +1,4 @@
-import { Posto, identificacao } from "@prisma/client";
+import { Posto } from "@prisma/client";
 import { prisma } from "../../../prisma/clint";
 
 class EliminarPostoUseCase{
