@@ -1,6 +1,7 @@
 import { TipoUsuario, Users } from "@prisma/client";
 import { prisma } from "../../../prisma/client";
 import { hash } from "bcrypt";
+import { MailService } from "../../../config/Mail/MailService";
 
 
 class CriarUsuarioUseCase {

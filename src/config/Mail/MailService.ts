@@ -13,7 +13,7 @@ class MailProvider {
     service: "gmail",
     auth: {
       user: "onlineaspo@gmail.com",
-      pass: "cytuyqyreyqkfpwy",
+      pass: "mfkhhmjjfntwqyoe",
     }
   })) {}
 
@@ -31,11 +31,7 @@ class MailProvider {
     })
   }
 
-  async sendConfirmationEnrollmentMessage(data: IMessage) {
-    await this.send(data)
-  }
-
-  async sendPasswordResetToken(data: IMessage) {
+  async sendSolicitationResponse(data: IMessage) {
     await this.send(data)
   }
 }
