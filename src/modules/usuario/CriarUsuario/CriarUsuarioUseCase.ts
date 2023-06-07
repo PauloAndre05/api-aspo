@@ -1,13 +1,16 @@
-import { TipoUsuario, Users } from "@prisma/client";
+
 import { prisma } from "../../../prisma/client";
 import { hash } from "bcrypt";
 import { MailService } from "../../../config/Mail/MailService";
+import { Users } from "@prisma/client";
 
 
 class CriarUsuarioUseCase {
-    async execute({ id, nome, email, senha, cargo, tipo:TipoUsuario, postoId }: Users): Promise<Users> {
+    async execute({ id, nome, email, senha,  tipo,  postoId, estado }: Users ): Promise<Users>{
       const existeEmail = await prisma.users.findUnique({ where: { email } });
       if (existeEmail) {
+
+        
         throw new Error("Email já existe");
       }
       
@@ -18,10 +21,10 @@ class CriarUsuarioUseCase {
           id,
           nome,
           email,
-          senha: hashedSenha,
-          cargo,
-          tipo: TipoUsuario,
+          senha,
+          tipo,
           postoId,
+          estado
         },
       });
   

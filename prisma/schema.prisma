@@ -40,12 +40,12 @@ model Posto {
   local       String
   cordenadas  String
   Agendamento Agendamento[]
-  User        User[]
+  Users        Users[]
 
   @@map("postos")
 }
 
-model User {
+model Users {
   id      String      @id @default(uuid())
   nome    String
   email   String      @unique
@@ -55,7 +55,6 @@ model User {
   postoId String
   estado  UserState   @default(DESATIVADO)
 
-  @@map("usuarios")
 }
 
 enum UserState {
@@ -68,11 +67,10 @@ enum TipoUsuario {
   DEFAULT_USER
 }
 
-model feedback {
+model newslettrs {
   id       String @id @default(uuid())
   email    String
   nome     String
   mensagem String
 
-  @@map("feedbacks")
 }

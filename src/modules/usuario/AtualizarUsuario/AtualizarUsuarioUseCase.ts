@@ -3,7 +3,7 @@ import { MailService } from "../../../config/Mail/MailService";
 import { prisma } from "../../../prisma/client";
 
 class AtualizarUsuarioUseCase{
-    async execute({id, nome, email, senha, cargo, estado}: Users): Promise<Users>{
+    async execute({id, nome, email, senha, postoId, tipo, estado}: Users): Promise<Users>{
         const ifExiste = await prisma.users.findUnique({where: {id}});
         if(!ifExiste) throw new Error("O Usuario não encontrado");
 
@@ -16,7 +16,7 @@ class AtualizarUsuarioUseCase{
             })
         }
 
-        const user = await prisma.users.update({where: {id}, data: {id, nome, email, senha, cargo, estado}});
+        const user = await prisma.users.update({where: {id}, data: {id, nome, email, senha, estado}});
         return user
     }
 }

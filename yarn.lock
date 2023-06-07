@@ -1475,6 +1475,13 @@
   "resolved" "https://registry.npmjs.org/@types/node/-/node-14.18.33.tgz"
   "version" "14.18.33"
 
+"@types/nodemailer@^6.4.8":
+  "integrity" "sha512-oVsJSCkqViCn8/pEu2hfjwVO+Gb3e+eTWjg3PcjeFKRItfKpKwHphQqbYmPQrlMk+op7pNNWPbsJIEthpFN/OQ=="
+  "resolved" "https://registry.npmjs.org/@types/nodemailer/-/nodemailer-6.4.8.tgz"
+  "version" "6.4.8"
+  dependencies:
+    "@types/node" "*"
+
 "@types/prop-types@*":
   "integrity" "sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w=="
   "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.5.tgz"

@@ -1,5 +1,5 @@
 import { Agendamento } from "@prisma/client";
-import { prisma } from "../../../prisma/clint";
+import { prisma } from "../../../../prisma/client";
 
 class ConsultarAgendamentoUseCase{
     async execute({id}: any): Promise<Agendamento[]>{
