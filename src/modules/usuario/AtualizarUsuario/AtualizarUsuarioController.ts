@@ -7,7 +7,7 @@ class AtualizarUsuarioController{
         const { nome, email, senha, postoId, tipo, estado} = req.body;
         const atulizarUsuario = new AtualizarUsuarioUseCase();
         const atualizar = await atulizarUsuario.execute({id, nome, email, senha, postoId, tipo, estado});
-        return res.status(202).json(atualizar);
+        return res.status(202).json(atualizar); 
     }
 
 }

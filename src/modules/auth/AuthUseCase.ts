@@ -1,20 +1,24 @@
-import { Users } from "@prisma/client";
+import { UserState, Users } from "@prisma/client";
 import { prisma } from "../../prisma/client";
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import { IAuthDTO } from "./dtos";
+import { RequestError } from "../../appErrors/ErrorApi";
 
 
 export class AuthUseCase {
     async execute({email, senha}: IAuthDTO){
         const user = await prisma.users.findUnique({where: {email}})
-        if(!user) throw new Error("Email ou senha incorrecto!")
+        if(!user) throw new RequestError("Email ou senha incorrecto!")
         
         const passwordMatch = await compare(senha, user.senha);
 
-        if(!passwordMatch) throw new Error("Email ou senha incorrecto!")
+        if(!passwordMatch) throw new RequestError("Email ou senha incorrecto!")
 
-        const token = sign({}, "e9107550cf94ae3e524df747c4f0a5f5", {
+        if (user.estado === UserState.DESATIVADO) {
+            throw new RequestError("Sua conta está desativada. Entre em contato com o suporte.");
+        }
+        const token = sign({}, "251369ce3989d217042f2cf8dd8cad50", {
             expiresIn: "1d",
             subject: user.id
         })

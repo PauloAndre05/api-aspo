@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer'
-import 'dotenv'
+import dotenv from 'dotenv';
+
 
 interface IMessage {
   to: string,
@@ -8,12 +9,15 @@ interface IMessage {
   body: string
 }
 
+dotenv.config();
+
+
 class MailProvider {
   constructor(private transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: "onlineaspo@gmail.com",
-      pass: "cytuyqyreyqkfpwy",
+      pass: "mzrdbxivwwkewgeh",
     }
   })) {}
 

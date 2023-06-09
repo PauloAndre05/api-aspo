@@ -10,8 +10,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model Agendamento {
-  id               String   @id @default(uuid())
+  id               String   @id @default(dbgenerated("my_custom_uuid(6)"))
   dataAgenda       DateTime
   servico          Servico? @relation(fields: [servicoId], references: [id])
   servicoId        String
@@ -19,6 +20,7 @@ model Agendamento {
   postoId          String
   telefone         String
   email            String
+  bi String
   createdAt        DateTime @default(now())
 
   @@map("agendamentos")
@@ -49,15 +51,19 @@ model Users {
   id      String      @id @default(uuid())
   nome    String
   email   String      @unique
-  senha   String      @default(uuid())
+  senha   String      
   posto   Posto?      @relation(fields: [postoId], references: [id])
-  tipo    TipoUsuario
+  tipo    TipoUsuario @default(DEFAULT_USER)
   postoId String
   estado  UserState   @default(DESATIVADO)
+}
+
+model hora {
+  id String @id @default(dbgenerated("my_custom_uuid(6)"))
 
 }
 
-enum UserState {
+enum UserState { 
   ACTIVADO
   DESATIVADO
 }

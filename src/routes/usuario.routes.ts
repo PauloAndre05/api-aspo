@@ -12,6 +12,6 @@ const ListarUsuario = new ListarUsuarioController()
 
 usuarioRouter.post("/", criarUsuario.handle)
 usuarioRouter.get("/", ListarUsuario.handle)
-usuarioRouter.put("/", atualizarUsuario.handle)
+usuarioRouter.put("/:id", atualizarUsuario.handle)
 
 export {usuarioRouter }

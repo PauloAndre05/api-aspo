@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Users" ALTER COLUMN "tipo" SET DEFAULT 'DEFAULT_USER';
