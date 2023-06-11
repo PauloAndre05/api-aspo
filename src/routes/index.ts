@@ -6,6 +6,7 @@ import { servicoRouter } from "./servico.routes";
 import { usuarioRouter } from "./usuario.routes";
 import { newsleterRouter } from "./newslettrs.routes";
 import { authRouter } from "./auth.routes";
+import { horaRouter } from "./horario.routes";
 
 const routes = Router();
 
@@ -15,4 +16,5 @@ routes.use("/servico", servicoRouter)
 routes.use("/usuario", usuarioRouter)
 routes.use("/newsleter", newsleterRouter)
 routes.use("/login", authRouter)
+routes.use("/hora", horaRouter)
 export {routes}
