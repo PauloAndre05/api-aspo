@@ -38,13 +38,13 @@ model Servico {
 }
 
 model Posto {
-  id          String        @id @default(uuid())
-  nome        String
-  local       String
-  cordenadas  String
-  limite      Int
-  Agendamento Agendamento[]
-  Users       Users[]
+  id           String        @id @default(uuid())
+  nome         String
+  local        String
+  cordenadas   String
+  limiteDiario Int
+  Agendamento  Agendamento[]
+  Users        Users[]
 
   @@map("postos")
 }
