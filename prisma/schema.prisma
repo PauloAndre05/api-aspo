@@ -42,7 +42,7 @@ model Posto {
   nome        String
   local       String
   cordenadas  String
-  limite int 
+  limite      Int
   Agendamento Agendamento[]
   Users       Users[]
 
