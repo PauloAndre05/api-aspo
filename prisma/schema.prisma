@@ -12,6 +12,7 @@ datasource db {
 
 model Agendamento {
   id               String   @id @default(uuid())
+  nome String
   dataAgenda       String
   servico          Servico? @relation(fields: [servicoId], references: [id])
   servicoId        String
@@ -63,7 +64,6 @@ model Users {
 model Horario {
   id          String        @id @default(uuid())
   hora        String
-  disponivel  Boolean       @default(true)
   Agendamento Agendamento[]
 }
 

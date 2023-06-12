@@ -5,9 +5,9 @@ export class CriarAgendamentoController {
     constructor(private criarAgendamentoUseCase: CriarAgendamentoUseCase) {}
 
     async handle(req: Request, res: Response){
-        const { dataAgenda, servicoId, postoId, telefone, email } = req.body;
+        const { dataAgenda, servicoId, postoId, horaId, bi, telefone, email, nome } = req.body;
 
-        const agendamento = await this.criarAgendamentoUseCase.execute({ dataAgenda, servicoId, postoId, telefone, email });
+        const agendamento = await this.criarAgendamentoUseCase.execute({ dataAgenda, servicoId, postoId, horaId, telefone, email, bi, nome });
         return res.status(201).json(agendamento);
     }
 }

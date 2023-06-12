@@ -6,4 +6,5 @@ export interface ICriarAgendamentoDTO {
     email: string;
     bi: string;
     horaId: string;
+    nome: string;
 }

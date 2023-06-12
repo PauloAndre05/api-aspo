@@ -9,3 +9,4 @@ const litarHora = new ListarHorarioController()
 
 horaRouter.post("/", criarHora.handle)
 horaRouter.get("/", litarHora.handle)
+horaRouter.get("/disponibilidade/:id", litarHora.handle)
