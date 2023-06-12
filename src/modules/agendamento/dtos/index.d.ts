@@ -4,4 +4,6 @@ export interface ICriarAgendamentoDTO {
     postoId: string;
     telefone: string;
     email: string;
+    bi: string;
+    horaId: string;
 }

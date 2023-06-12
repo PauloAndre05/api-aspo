@@ -5,9 +5,11 @@ import { prisma } from "../../../../prisma/client";
 
 
 export class AgendamentoRepository implements IAgendamentoRepository {
-    async create({ dataAgenda, servicoId, postoId, telefone, email }: ICriarAgendamentoDTO): Promise<Agendamento> {
+    async create({ dataAgenda, servicoId, postoId, telefone, email, bi, horaId }: ICriarAgendamentoDTO): Promise<Agendamento> {
         return await prisma.agendamento.create({
             data: {
+                bi, 
+                horaId,
                 dataAgenda,
                 servicoId,
                 postoId,
