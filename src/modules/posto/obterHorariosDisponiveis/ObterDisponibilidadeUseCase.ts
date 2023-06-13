@@ -3,17 +3,17 @@ import { RequestError } from "../../../appErrors/ErrorApi";
 import { IAgendamentoRepository } from "../../agendamento/repositories/IAgendamentoRepository";
 
 interface IRequest {
-    postoId: string;
+    id: string;
     dataAgenda: string;
 }
 
 
-export class ObterDisponibilidadeUseCase {
+export class ObterHorariosDisponiveisUseCase {
     constructor(private agendamentoRepository: IAgendamentoRepository) {}
-    async execute({ postoId, dataAgenda }: IRequest): Promise<void>{
+    async execute({ id, dataAgenda }: IRequest): Promise<string[]>{
         const posto = await prisma.posto.findUnique({
             where: {
-                id: postoId
+                id
             }
         })
 
@@ -21,16 +21,18 @@ export class ObterDisponibilidadeUseCase {
             throw new RequestError("Posto nao encontrado", 404)
         }
 
+        const horarios = await prisma.horario.findMany();
+        const horariosDisponiveis: string[] = [];
 
-        const agendamentos = await prisma.agendamento.findMany({
-            where: {
-                postoId,
-                dataAgenda
+
+        for(const horario of horarios) {
+            const totalAgendamentos = await this.agendamentoRepository.getTotalBookingsForTheTime(dataAgenda, horario.id, id);
+
+            if (totalAgendamentos < 10) {
+                horariosDisponiveis.push(horario.hora);   
             }
-        })
+        }        
 
-        agendamentos.map(async (agendamento) => {
-            const a = await this.agendamentoRepository.getTotalBookingsForTheTime(agendamento.dataAgenda, agendamento.horaId, agendamento.postoId)
-        })
+        return horariosDisponiveis;
     }
 }

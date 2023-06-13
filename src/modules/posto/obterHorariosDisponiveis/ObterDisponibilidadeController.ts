@@ -1,12 +1,17 @@
 import { Response, Request } from "express";
-import { ObterDisponibilidadeUseCase } from "./ObterDisponibilidadeUseCase";
+import { ObterHorariosDisponiveisUseCase } from "./ObterDisponibilidadeUseCase";
+import { AgendamentoRepository } from "../../agendamento/repositories/implementation/AgendamentoRepository";
 
-export class ObterDisponibilidadeController {
-    constructor(private obterDisponibilidadeUseCase: ObterDisponibilidadeUseCase) {}
+export class ObterHorariosDisponiveisController {
+    async handle(req: Request, res: Response): Promise<Response> {
+        const { id, dataAgenda } = req.params
+        const agendamentoRepository = new AgendamentoRepository();
+        const obterHorariosDisponiveisUseCase = new ObterHorariosDisponiveisUseCase(agendamentoRepository);
 
-    async handle(req: Request, res: Response){
-        const { postoId, dataAgenda } = req.params
-        
-        return res.status(200).send();
+        console.log(id, dataAgenda);
+
+        const horariosDisponiveis = await obterHorariosDisponiveisUseCase.execute({ id, dataAgenda });
+
+        return res.status(200).json({ horariosDisponiveis });
     }
 }
