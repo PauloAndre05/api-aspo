@@ -5,10 +5,9 @@ class ObterDisponibilidadeController {
     constructor(private obterDisponibilidadeUseCase: ObterDisponibilidadeUseCase) {}
 
     async handle(req: Request, res: Response){
-        const { horaId } = req.params
-        const { postoId, dataAgenda } = req.body
-
-        const disponibilidade = await this.obterDisponibilidadeUseCase.execute({ postoId, dataAgenda, horaId });
+        const { postoId } = req.params
+        const { dataAgenda } = req.body
+        const disponibilidade = await this.obterDisponibilidadeUseCase.execute({ postoId, dataAgenda });
         return res.status(200).json({ disponivel: disponibilidade });
     }
 }

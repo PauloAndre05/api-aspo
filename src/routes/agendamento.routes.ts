@@ -6,7 +6,7 @@ import { ListarAgendamentoController } from "../modules/agendamento/useCases/Lis
 const agendamentosRouter = Router();
 
 agendamentosRouter.post("/", (req, res) => {
-    return criarAgendamentoController.handle
+    return criarAgendamentoController.handle(req, res)
 });
 
 agendamentosRouter.get("/", (req, res) => {
