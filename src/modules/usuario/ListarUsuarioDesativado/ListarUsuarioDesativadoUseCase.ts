@@ -1,9 +1,12 @@
 import { Users } from "@prisma/client";
 import { prisma } from "../../../prisma/client";
 
-class ListarUsuarioUseCase {
+class ListarUsuarioDesativadoUseCase {
     async execute(): Promise<Users[]> {
         const lista = await prisma.users.findMany({
+            where: {
+                estado: "DESATIVADO"
+            },
             include: {
                 posto: true
             }
@@ -13,4 +16,4 @@ class ListarUsuarioUseCase {
     }
 }
 
-export { ListarUsuarioUseCase }
+export { ListarUsuarioDesativadoUseCase }
