@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { criarAgendamentoController } from "../modules/agendamento/useCases/CriarAgendamento";
 import { eliminarAgendamentoController } from "../modules/agendamento/useCases/EliminarAgendamento";
-import { ListarAgendamentoController } from "../modules/agendamento/useCases/ListarAgendamento/ListarAgendamentoController";
+import { listarAgendamentoController } from "../modules/agendamento/useCases/ListarAgendamento";
 
 const agendamentosRouter = Router();
 
@@ -10,11 +10,9 @@ agendamentosRouter.post("/", (req, res) => {
 });
 
 agendamentosRouter.get("/", (req, res) => {
-    
+    return listarAgendamentoController.handle(req, res)
 });
-agendamentosRouter.post("/atualizar/:id", (req, res) => {
-    
-});
+
 agendamentosRouter.delete("/eliminar/:id", (req, res) => {
     return eliminarAgendamentoController.handle(req, res);
 });

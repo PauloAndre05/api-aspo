@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { ListarAgendamentoUseCase } from "./ListarAgendamentoUseCase";
 
-class ListarAgendamentoController{
+class ListarAgendamentoController {
+    constructor(private listarAgendamentoUseCase: ListarAgendamentoUseCase) {}
     async handle(req: Request, res: Response){
-        const agend = new ListarAgendamentoUseCase();
-        const listarAgendamento = await agend.execute();
-        return res.status(201).json(listarAgendamento);
+        const agendamentos = await this.listarAgendamentoUseCase.execute();
+        return res.status(201).json(agendamentos);
     }
 }
 

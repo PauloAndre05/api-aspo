@@ -3,17 +3,16 @@ import { RequestError } from "../../../appErrors/ErrorApi";
 import { IAgendamentoRepository } from "../../agendamento/repositories/IAgendamentoRepository";
 
 interface IRequest {
-    id: string;
+    postoId: string;
     dataAgenda: string;
 }
 
-
 export class ObterHorariosDisponiveisUseCase {
     constructor(private agendamentoRepository: IAgendamentoRepository) {}
-    async execute({ id, dataAgenda }: IRequest): Promise<string[]>{
+    async execute({ postoId, dataAgenda }: IRequest): Promise<string[]>{
         const posto = await prisma.posto.findUnique({
             where: {
-                id
+                id: postoId
             }
         })
 
@@ -26,7 +25,7 @@ export class ObterHorariosDisponiveisUseCase {
 
 
         for(const horario of horarios) {
-            const totalAgendamentos = await this.agendamentoRepository.getTotalBookingsForTheTime(dataAgenda, horario.id, id);
+            const totalAgendamentos = await this.agendamentoRepository.getTotalBookingsForTheTime(dataAgenda, horario.id, postoId);
 
             if (totalAgendamentos < 10) {
                 horariosDisponiveis.push(horario.hora);   

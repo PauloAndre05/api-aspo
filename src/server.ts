@@ -10,4 +10,4 @@ app.use(express.json());
 app.use(errorMiddleware);
 app.use(express.urlencoded({extended: true}));
 app.use(routes);
-app.listen(3001, ()=> console.log("SERVER RUNNING IN PORT 3001", ));
+app.listen(5555, ()=> console.log("SERVER RUNNING IN PORT 5555", ));

@@ -1,12 +1,10 @@
 import { Agendamento } from "@prisma/client";
-import { prisma } from "../../../../prisma/client";
-import { RequestError } from "../../../../appErrors/ErrorApi";
+import { IAgendamentoRepository } from "../../repositories/IAgendamentoRepository";
 
-class ListarAgendamentoUseCase{
-    async execute(): Promise<Agendamento[]>{
-        const listaAgendamento = await prisma.agendamento.findMany();
-        if(!listaAgendamento) throw new RequestError("Erro ao consultar o Agendamento");
-        return listaAgendamento;
+class ListarAgendamentoUseCase {
+    constructor(private agendamentoRepository: IAgendamentoRepository) {}
+    async execute(): Promise<Agendamento[]> {
+        return await this.agendamentoRepository.list();
     }
 }
 
