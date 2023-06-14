@@ -9,7 +9,7 @@ interface IRequest {
 
 export class ObterHorariosDisponiveisUseCase {
     constructor(private agendamentoRepository: IAgendamentoRepository) {}
-    async execute({ postoId, dataAgenda }: IRequest): Promise<string[]>{
+    async execute({ postoId, dataAgenda }: IRequest): Promise<object[]>{
         const posto = await prisma.posto.findUnique({
             where: {
                 id: postoId
@@ -21,14 +21,17 @@ export class ObterHorariosDisponiveisUseCase {
         }
 
         const horarios = await prisma.horario.findMany();
-        const horariosDisponiveis: string[] = [];
+        const horariosDisponiveis: object[] = [];
 
 
         for(const horario of horarios) {
             const totalAgendamentos = await this.agendamentoRepository.getTotalBookingsForTheTime(dataAgenda, horario.id, postoId);
 
             if (totalAgendamentos < 10) {
-                horariosDisponiveis.push(horario.hora);   
+                horariosDisponiveis.push({
+                    id: horario.id,
+                    hora: horario.hora
+                });   
             }
         }        
 
