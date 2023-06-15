@@ -6,7 +6,9 @@ export class ListarAgendamentoPorPostoUseCase {
     async execute(postoId: string): Promise<Agendamento[]> {
         const lista = await prisma.agendamento.findMany({
             where: {
-                postoId: postoId
+                postoAtendimento:{
+                    id: postoId
+                } 
             },
             include: {
                 horario: true,
