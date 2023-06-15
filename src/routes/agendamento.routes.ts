@@ -19,7 +19,7 @@ agendamentosRouter.get("/", (req, res) => {
     return listarAgendamentoController.handle(req, res)
 });
 
-agendamentosRouter.get("/posto/:id", listarAgendamentoPorPosto.handle)
+agendamentosRouter.get("/posto/:postoId", listarAgendamentoPorPosto.handle)
 
 agendamentosRouter.delete("/eliminar/:id", (req, res) => {
     return eliminarAgendamentoController.handle(req, res);
