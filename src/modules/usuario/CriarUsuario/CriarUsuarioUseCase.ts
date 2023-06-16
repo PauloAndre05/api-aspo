@@ -9,10 +9,7 @@ import { RequestError } from "../../../appErrors/ErrorApi";
 class CriarUsuarioUseCase {
     async execute({ id, nome, email, senha,  tipo,  postoId, estado }: Users ): Promise<Users>{
       const existeEmail = await prisma.users.findUnique({ where: { email } });
-      if (existeEmail) {
-        
-        throw new RequestError("Email já existe");
-      }
+      if (existeEmail) throw new RequestError("Email já existe");
       
       const hashedSenha = await hash(senha, 10);
   

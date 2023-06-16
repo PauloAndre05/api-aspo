@@ -80,7 +80,12 @@ export class AgendamentoRepository implements IAgendamentoRepository {
     }
 
     async list(): Promise<Agendamento[]> {
-        return await prisma.agendamento.findMany()
+        return await prisma.agendamento.findMany({
+            include:{
+                postoAtendimento: true,
+                servico: true,
+            }
+        })
     }
 
     async delete(id: string): Promise<Agendamento> {
