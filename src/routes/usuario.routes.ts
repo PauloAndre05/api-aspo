@@ -15,9 +15,9 @@ const ListarUsuarioDesativado = new ListarUsuarioDesativadoController()
 const ListarUsuarioById = new ListarUsuarioByIdController()
 
 usuarioRouter.post("/", criarUsuario.handle)
-usuarioRouter.get("/", ListarUsuario.handle)
+usuarioRouter.get("/listarTodos", ListarUsuario.handle)
 usuarioRouter.get("/:id", ListarUsuarioById.handle)
-usuarioRouter.get("/Desativdos", ListarUsuarioDesativado.handle)
+usuarioRouter.get("/listarUsuario/desativados", ListarUsuarioDesativado.handle)
 usuarioRouter.put("/:id", atualizarUsuario.handle)
 
 export { usuarioRouter }

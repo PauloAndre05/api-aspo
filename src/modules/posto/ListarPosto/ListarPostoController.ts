@@ -9,4 +9,4 @@ class ListarPostoController{
     }
 }
 
-export  { ListarPostoController }
+export  { ListarPostoController }   

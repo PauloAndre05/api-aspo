@@ -8,4 +8,4 @@ class ListarAgendamentoUseCase {
     }
 }
 
-export { ListarAgendamentoUseCase }
+export { ListarAgendamentoUseCase }     

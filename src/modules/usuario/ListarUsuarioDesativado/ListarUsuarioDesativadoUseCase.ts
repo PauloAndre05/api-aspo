@@ -11,7 +11,7 @@ class ListarUsuarioDesativadoUseCase {
                 posto: true
             }
         });
-        if (!lista) throw new Error("Erro ao listar a identificação");
+        if (!lista) throw new Error("Erro ao listar a usuarios desactivados");
         return lista;
     }
 }
