@@ -2,11 +2,24 @@ import { Agendamento } from "@prisma/client";
 import { ICriarAgendamentoDTO } from "../../dtos";
 import { IAgendamentoRepository } from "../../repositories/IAgendamentoRepository";
 import { RequestError } from "../../../../appErrors/ErrorApi";
+import crypto from "crypto";
+
+interface IRequest {
+    dataAgenda: string;
+    servicoId: string;
+    postoId: string;
+    telefone: string;
+    email: string;
+    bi?: string;
+    cedula?: string;
+    horaId: string;
+    nome: string;
+}
 
 export class CriarAgendamentoUseCase {
     constructor(private agendamentoRepository: IAgendamentoRepository) {}
 
-    async execute({ dataAgenda, servicoId, postoId, horaId, telefone, email, bi, nome }: ICriarAgendamentoDTO): Promise<Agendamento> {
+    async execute({ dataAgenda, servicoId, postoId, horaId, telefone, email, bi, cedula, nome }: IRequest): Promise<Agendamento> {
         const station = await this.agendamentoRepository.findStationById(postoId);
 
         if(!station) {
@@ -37,6 +50,15 @@ export class CriarAgendamentoUseCase {
             throw new RequestError("Limite de agendamentos atingido neste horário", 400)
         }
 
-        return await this.agendamentoRepository.create({ dataAgenda, servicoId, postoId, horaId, telefone, email, bi, nome })        
+        const comprovativo = await this.generateEvidenceCode(dataAgenda, servicoId);
+
+        return await this.agendamentoRepository.create({ dataAgenda, servicoId, postoId, telefone, email, bi, cedula, horaId, nome, comprovativo })        
+    }
+
+    async generateEvidenceCode(date: string, serviceId: string): Promise<string> {
+        const dataToHash = `${date}${serviceId}`;
+
+        const hash = crypto.createHash('md5').update(dataToHash).digest('hex');
+        return hash.substring(0, 6).toUpperCase();
     }
 }
