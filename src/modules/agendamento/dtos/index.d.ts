@@ -4,7 +4,9 @@ export interface ICriarAgendamentoDTO {
     postoId: string;
     telefone: string;
     email: string;
-    bi: string;
+    bi?: string;
+    cedula?: string;
+    comprovativo: string;
     horaId: string;
     nome: string;
 }

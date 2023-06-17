@@ -12,7 +12,7 @@ datasource db {
 
 model Agendamento {
   id               String   @id @default(uuid())
-  nome String
+  nome             String
   dataAgenda       String
   servico          Servico? @relation(fields: [servicoId], references: [id])
   servicoId        String
@@ -20,9 +20,11 @@ model Agendamento {
   postoId          String
   telefone         String
   email            String
-  bi               String
-  horario          Horario  @relation(fields: [horaId], references: [id])
+  bi               String?
+  cedula           String?
+  comprovativo     String
   horaId           String
+  horario          Horario  @relation(fields: [horaId], references: [id])
   createdAt        DateTime @default(now())
 
   @@map("agendamentos")
