@@ -10,8 +10,8 @@ interface IRequest {
     postoId: string;
     telefone: string;
     email: string;
-    bi?: string;
-    cedula?: string;
+    bi: string;
+    cedula: string;
     horaId: string;
     nome: string;
 }

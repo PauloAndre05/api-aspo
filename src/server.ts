@@ -2,7 +2,7 @@ import 'express-async-errors'
 import express, { NextFunction, Request, Response } from "express";
 import cors from 'cors';
 import { routes } from "./routes";
-import { app, serverHttp } from './http';
+import { app } from './http';
 import { errorMiddleware } from './middlewares/Error';
 
 app.use(cors());
