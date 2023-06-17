@@ -13,7 +13,8 @@ class AtualizarUsuarioUseCase{
                 to: ifExiste.email,
                 from: "<ASPO onlineaspo@gmail.com>",
                 subject: "Confirmação de Solicitação",
-                body: "Bem vindo ao ASPO, a sua conta já se encontra activa. Já pode fazer o login"
+                body: `Olá ${ifExiste.nome}, Bem vindo ao ASPO, o seu cadastro foi aprovado com sucesso! 
+                A sua conta já se encontra activa. Já pode fazer o login no ASPOadmin`
             })
         }
 

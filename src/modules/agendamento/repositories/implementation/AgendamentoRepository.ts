@@ -84,6 +84,10 @@ export class AgendamentoRepository implements IAgendamentoRepository {
             include:{
                 postoAtendimento: true,
                 servico: true,
+            },
+
+            orderBy: {
+                dataAgenda:'asc'
             }
         })
     }

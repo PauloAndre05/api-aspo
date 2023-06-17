@@ -4,8 +4,15 @@ import { prisma } from "../../../prisma/client";
 class ListarUsuarioUseCase {
     async execute(): Promise<Users[]> {
         const lista = await prisma.users.findMany({
+            where: {
+                tipo: "DEFAULT_USER"
+            },
             include: {
                 posto: true
+            },
+
+            orderBy: {
+                nome: 'asc'
             }
         });
         if (!lista) throw new Error("Erro ao listar a identificação");
