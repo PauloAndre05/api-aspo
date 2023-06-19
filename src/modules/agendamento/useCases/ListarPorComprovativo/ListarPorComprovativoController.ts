@@ -6,5 +6,6 @@ export class ListarPorComprovativoController{
         const { comprovativo } = req.params
         const comprovativoEncontrado = new ListarPorComprovativoUseCase()
         const novoComprovativo =  await comprovativoEncontrado.execute(comprovativo)
+        return res.status(200).json(novoComprovativo)
     }
 }

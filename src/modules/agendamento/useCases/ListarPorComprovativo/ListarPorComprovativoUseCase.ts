@@ -7,6 +7,11 @@ export class ListarPorComprovativoUseCase{
         const existComprovaivo = await prisma.agendamento.findFirst({
             where: {
                 comprovativo
+            },
+
+            include:{
+                postoAtendimento: true,
+                servico: true
             }
         })
 

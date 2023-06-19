@@ -21,7 +21,7 @@ model Agendamento {
   telefone         String
   email            String
   bi               String?
-  comprovativo     String
+  comprovativo     String @unique
   horaId           String
   horario          Horario  @relation(fields: [horaId], references: [id])
   createdAt        DateTime @default(now())
