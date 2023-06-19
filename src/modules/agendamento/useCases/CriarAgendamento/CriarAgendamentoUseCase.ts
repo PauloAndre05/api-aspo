@@ -1,5 +1,4 @@
 import { Agendamento } from "@prisma/client";
-import { ICriarAgendamentoDTO } from "../../dtos";
 import { IAgendamentoRepository } from "../../repositories/IAgendamentoRepository";
 import { RequestError } from "../../../../appErrors/ErrorApi";
 import crypto from "crypto";
