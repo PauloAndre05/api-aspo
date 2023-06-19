@@ -2,7 +2,7 @@ import { Agendamento, Horario, Posto, Servico } from "@prisma/client";
 import { ICriarAgendamentoDTO } from "../dtos";
 
 export interface IAgendamentoRepository {
-    create({ dataAgenda, servicoId, postoId, telefone, email, bi, cedula, horaId, nome, comprovativo }: ICriarAgendamentoDTO): Promise<Agendamento>
+    create({ dataAgenda, servicoId, postoId, telefone, email, bi, horaId, nome, comprovativo }: ICriarAgendamentoDTO): Promise<Agendamento>
     findById(id: string): Promise<Agendamento | null>;
     findStationById(id: string): Promise<Posto | null>
     findServiceById(id: string): Promise<Servico | null>

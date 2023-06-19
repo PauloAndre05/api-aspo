@@ -4,9 +4,10 @@ import { prisma } from "../../../prisma/client";
 class ListarUsuarioUseCase {
     async execute(): Promise<Users[]> {
         const lista = await prisma.users.findMany({
-           /*  where: {
-                tipo: "DEFAULT_USER"
-            }, */
+            where: {
+                tipo: "DEFAULT_USER",
+                estado: "ACTIVADO",
+            }, 
             include: {
                 posto: true
             },

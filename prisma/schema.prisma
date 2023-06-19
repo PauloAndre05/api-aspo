@@ -21,7 +21,6 @@ model Agendamento {
   telefone         String
   email            String
   bi               String?
-  cedula           String?
   comprovativo     String
   horaId           String
   horario          Horario  @relation(fields: [horaId], references: [id])

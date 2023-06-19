@@ -11,7 +11,6 @@ interface IRequest {
     telefone: string;
     email: string;
     bi: string;
-    cedula: string;
     horaId: string;
     nome: string;
 }
@@ -19,7 +18,7 @@ interface IRequest {
 export class CriarAgendamentoUseCase {
     constructor(private agendamentoRepository: IAgendamentoRepository) {}
 
-    async execute({ dataAgenda, servicoId, postoId, horaId, telefone, email, bi, cedula, nome }: IRequest): Promise<Agendamento> {
+    async execute({ dataAgenda, servicoId, postoId, horaId, telefone, email, bi, nome }: IRequest): Promise<Agendamento> {
         const station = await this.agendamentoRepository.findStationById(postoId);
 
         if(!station) {
@@ -52,7 +51,7 @@ export class CriarAgendamentoUseCase {
 
         const comprovativo = await this.generateEvidenceCode(dataAgenda, servicoId);
 
-        return await this.agendamentoRepository.create({ dataAgenda, servicoId, postoId, telefone, email, bi, cedula, horaId, nome, comprovativo })        
+        return await this.agendamentoRepository.create({ dataAgenda, servicoId, postoId, telefone, email, bi, horaId, nome, comprovativo })        
     }
 
     async generateEvidenceCode(date: string, serviceId: string): Promise<string> {
