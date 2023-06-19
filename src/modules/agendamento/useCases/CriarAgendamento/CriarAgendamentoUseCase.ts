@@ -50,13 +50,13 @@ export class CriarAgendamentoUseCase {
             throw new RequestError("Limite de agendamentos atingido neste horário", 400)
         }
 
-        const comprovativo = await this.generateEvidenceCode(dataAgenda, servicoId);
+        const comprovativo = await this.generateEvidenceCode(dataAgenda, servicoId, totalBookingsForTheDate);
 
         return await this.agendamentoRepository.create({ dataAgenda, servicoId, postoId, telefone, email, bi, cedula, horaId, nome, comprovativo })        
     }
 
-    async generateEvidenceCode(date: string, serviceId: string): Promise<string> {
-        const dataToHash = `${date}${serviceId}`;
+    async generateEvidenceCode(date: string, serviceId: string, counter: number): Promise<string> {
+        const dataToHash = `${date}${serviceId}${counter}`;
 
         const hash = crypto.createHash('md5').update(dataToHash).digest('hex');
         return hash.substring(0, 6).toUpperCase();
