@@ -20,7 +20,7 @@ usuarioRouter.post("/", criarUsuario.handle)
 usuarioRouter.get("/listarTodos", listarUsuario.handle)
 usuarioRouter.get("/:id", listarUsuarioById.handle)
 usuarioRouter.get("/listarUsuario/desativados", listarUsuarioDesativado.handle)
-usuarioRouter.put("/:id", atualizarUsuario.handle)
-usuarioRouter.delete("/:id", eliminarUsuario.handle)
+usuarioRouter.put("/actualizar/:id", atualizarUsuario.handle)
+usuarioRouter.delete("/eliminar/:id", eliminarUsuario.handle)
 
 export { usuarioRouter }
