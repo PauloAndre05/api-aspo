@@ -4,7 +4,11 @@ import { RequestError } from "../../../appErrors/ErrorApi";
 
 class ListarPostoUseCase {
     async execute(): Promise<Posto[]> {
-        const postList = await prisma.posto.findMany();
+        const postList = await prisma.posto.findMany({
+            include:{
+                Agendamento: true
+            }
+        });
         if (!postList) throw new RequestError("Erro ao Consultar o Posto");
         return postList
     }
