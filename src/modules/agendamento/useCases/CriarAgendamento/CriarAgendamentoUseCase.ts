@@ -2,6 +2,7 @@ import { Agendamento } from "@prisma/client";
 import { IAgendamentoRepository } from "../../repositories/IAgendamentoRepository";
 import { RequestError } from "../../../../appErrors/ErrorApi";
 import crypto from "crypto";
+import { MailService } from "../../../../config/Mail/MailService";
 
 interface IRequest {
     dataAgenda: string;
@@ -50,13 +51,31 @@ export class CriarAgendamentoUseCase {
 
         const comprovativo = await this.generateEvidenceCode(dataAgenda, servicoId, totalBookingsForTheDate);
 
-        return await this.agendamentoRepository.create({ dataAgenda, servicoId, postoId, telefone, email, bi, horaId, nome, comprovativo })        
+        const agendamento = await this.agendamentoRepository.create({ dataAgenda, servicoId, postoId, telefone, email, bi, horaId, nome, comprovativo })   
+        
+        const subject = 'Confirmação de Agendamento';
+        const body = `Olá ${nome}, o seu agendamento foi realizado com sucesso!\n
+        Este é o código do seu agendamento ${comprovativo}\n
+        Faça uma consulta no aspo.netlify.app para baixar o seu comprovativo de agendamento`;
+
+        const message = {
+          to: email,
+          from: 'onlineaspo@gmail.com',
+          subject: subject,
+          body: body,
+        };
+
+        await MailService.send(message);
+
+        return agendamento;
     }
 
     async generateEvidenceCode(date: string, serviceId: string, counter: number): Promise<string> {
         const dataToHash = `${date}${serviceId}${counter}`;
 
         const hash = crypto.createHash('md5').update(dataToHash).digest('hex');
-        return hash.substring(0, 6).toUpperCase();
+        const uniqueSuffix = crypto.randomBytes(2).toString('hex');
+    
+        return `${hash.substring(0, 2).toUpperCase()}${uniqueSuffix.toUpperCase()}`;
     }
 }

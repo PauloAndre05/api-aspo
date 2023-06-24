@@ -5,8 +5,8 @@ class EliminarPostoController{
     async handle(req: Request, res: Response){
         const { id } = req.params;
         const eliminar = new EliminarPostoUseCase();
-        const elimina = await eliminar.execute({id});
-        return res.status(200).json(elimina)
+        const eliminado = await eliminar.execute(id);
+        return res.status(200).json(eliminado)
     }
 }
 

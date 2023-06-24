@@ -12,7 +12,7 @@ const atualizarServico = new AtualizarServicoController();
 
 servicoRouter.post("/", criarServico.handle);
 servicoRouter.get("/", listarServico.handle);
-servicoRouter.post("/atualizar/:id", atualizarServico.handle);
+servicoRouter.put("/atualizar/:id", atualizarServico.handle);
 servicoRouter.delete("/:id", eliminarServico.handle);
 
 export { servicoRouter }

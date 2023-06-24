@@ -18,6 +18,6 @@ const horariosDisponiveis = new ObterHorariosDisponiveisController();
 postoRouter.post("/", criarPosto.handle);
 postoRouter.get("/", listarPosto.handle);
 postoRouter.get("/:postoId/:dataAgenda", horariosDisponiveis.handle)
-postoRouter.post("/atualizar/:id", atualizarPosto.handle);
+postoRouter.put("/atualizar/:id", atualizarPosto.handle);
 postoRouter.delete("/:id", eliminarPosto.handle);
 export { postoRouter }

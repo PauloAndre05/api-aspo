@@ -11,7 +11,8 @@ export class ListarPorComprovativoUseCase{
 
             include:{
                 postoAtendimento: true,
-                servico: true
+                servico: true,
+                horario: true
             }
         })
 
