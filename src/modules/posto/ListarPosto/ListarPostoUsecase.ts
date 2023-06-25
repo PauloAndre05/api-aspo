@@ -6,7 +6,9 @@ class ListarPostoUseCase {
     async execute(): Promise<Posto[]> {
         const postList = await prisma.posto.findMany({
             include:{
-                Agendamento: true
+                Agendamento: true,
+                Confirmado: true,
+                Cancelado: true
             }
         });
         if (!postList) throw new RequestError("Erro ao Consultar o Posto");

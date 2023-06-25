@@ -4,7 +4,7 @@ import { prisma } from "../../../prisma/client";
 
 class CriarUsuarioController {
   async handle(req: Request, res: Response) {
-    const { id, nome, email, senha, tipo, postoId, estado } = req.body;
+    const { id, nome, email, senha, postoId } = req.body;
 
     const criarUsuarioUseCase = new CriarUsuarioUseCase();
 
@@ -14,9 +14,7 @@ class CriarUsuarioController {
         nome,
         email,
         senha,
-        tipo,
         postoId,
-        estado,
       });
 
       return res.status(201).json(usuario);

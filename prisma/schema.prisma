@@ -21,7 +21,7 @@ model Agendamento {
   telefone         String
   email            String
   bi               String?
-  comprovativo     String @unique
+  comprovativo     String   @unique
   horaId           String
   horario          Horario  @relation(fields: [horaId], references: [id])
   createdAt        DateTime @default(now())
@@ -35,6 +35,8 @@ model Servico {
   descricao   String
   createdAt   DateTime      @default(now())
   Agendamento Agendamento[]
+  Cancelado   Cancelado[]
+  Confirmado  Confirmado[]
 
   @@map("servicos")
 }
@@ -47,35 +49,34 @@ model Posto {
   limiteDiario Int
   Agendamento  Agendamento[]
   Users        Users[]
+  Cancelado    Cancelado[]
+  Confirmado   Confirmado[]
 
   @@map("postos")
 }
 
+model UserAdminGeral {
+  id    String @id @default(uuid())
+  nome  String
+  email String @unique
+  senha String
+}
+
 model Users {
-  id      String      @id @default(uuid())
+  id      String @id @default(uuid())
   nome    String
-  email   String      @unique
+  email   String @unique
   senha   String
-  posto   Posto?      @relation(fields: [postoId], references: [id])
-  tipo    TipoUsuario @default(DEFAULT_USER)
+  posto   Posto? @relation(fields: [postoId], references: [id])
   postoId String
-  estado  UserState   @default(DESATIVADO)
 }
 
 model Horario {
   id          String        @id @default(uuid())
   hora        String
   Agendamento Agendamento[]
-}
-
-enum UserState {
-  ACTIVADO
-  DESATIVADO
-}
-
-enum TipoUsuario {
-  SUPER_USER
-  DEFAULT_USER
+  Cancelado   Cancelado[]
+  Confirmado  Confirmado[]
 }
 
 model newslettrs {
@@ -83,4 +84,38 @@ model newslettrs {
   email    String
   nome     String
   mensagem String
+}
+
+model Cancelado {
+  id               String @id 
+  nome             String
+  dataAgenda       String
+  servico          Servico? @relation(fields: [servicoId], references: [id])
+  servicoId        String
+  postoAtendimento Posto?   @relation(fields: [postoId], references: [id])
+  postoId          String
+  telefone         String
+  email            String
+  bi               String?
+  comprovativo     String   @unique
+  horaId           String
+  horario          Horario  @relation(fields: [horaId], references: [id])
+  createdAt        DateTime @default(now())
+}
+
+model Confirmado {
+  id               String   @id @default(uuid())
+  nome             String
+  dataAgenda       String
+  servico          Servico? @relation(fields: [servicoId], references: [id])
+  servicoId        String
+  postoAtendimento Posto?   @relation(fields: [postoId], references: [id])
+  postoId          String
+  telefone         String
+  email            String
+  bi               String?
+  comprovativo     String   @unique
+  horaId           String
+  horario          Horario  @relation(fields: [horaId], references: [id])
+  createdAt        DateTime @default(now())
 }

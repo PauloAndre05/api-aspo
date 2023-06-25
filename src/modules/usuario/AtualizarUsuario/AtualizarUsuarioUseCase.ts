@@ -4,11 +4,11 @@ import { prisma } from "../../../prisma/client";
 import { RequestError } from "../../../appErrors/ErrorApi";
 
 class AtualizarUsuarioUseCase{
-    async execute({id, nome, email, senha, postoId, tipo, estado}: Users): Promise<Users>{
+    async execute({id, nome, email, senha, postoId}: Users): Promise<Users>{
         const ifExiste = await prisma.users.findUnique({where: {id}});
         if(!ifExiste) throw new RequestError("O Usuario não encontrado");
 
-        if(ifExiste.estado == "DESATIVADO"){
+       /*  if(ifExiste.estado == "DESATIVADO"){
             MailService.sendSolicitationResponse({
                 to: ifExiste.email,
                 from: "<ASPO onlineaspo@gmail.com>",
@@ -16,9 +16,9 @@ class AtualizarUsuarioUseCase{
                 body: `Olá ${ifExiste.nome}, Bem vindo ao ASPO, o seu cadastro foi aprovado com sucesso! 
                 A sua conta já se encontra activa. Já pode fazer o login no ASPOadmin`
             })
-        }
+        } */
 
-        const user = await prisma.users.update({where: {id}, data: {id, nome, email, senha, estado}});
+        const user = await prisma.users.update({where: {id}, data: {id, nome, email, senha}});
         return user
     }
 }

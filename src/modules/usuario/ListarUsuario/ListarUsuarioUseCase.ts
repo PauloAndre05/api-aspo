@@ -16,7 +16,7 @@ class ListarUsuarioUseCase {
                 nome: 'asc'
             }
         });
-        if (!lista) throw new Error("Erro ao listar a identificação");
+        if (!lista) throw new Error("Erro ao listar a usuario");
         return lista;
     }
 }
