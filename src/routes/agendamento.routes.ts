@@ -7,6 +7,7 @@ import { ListarAgendamentoPorPostoController } from "../modules/agendamento/useC
 import { ListarAgendamentoPorBiController } from "../modules/agendamento/useCases/ListarAgendamentoPorBI/ListarAgendamentoPorBiController";
 import { ListarPorComprovativoController } from "../modules/agendamento/useCases/ListarPorComprovativo/ListarPorComprovativoController";
 import { EliminarAgendamentoPorComprovativoController } from "../modules/agendamento/useCases/EliminarAgendaPorComprovativo/EliminarAgendamentoPorComprovativoController";
+import { ListarAgendamentoByDataAgendaControler } from "../modules/agendamento/useCases/listarAgendamentoByDataAgenda/ListarAgendamentoByDataAgendaControler";
 
 const agendamentosRouter = Router();
 
@@ -15,6 +16,7 @@ const listarAgendamentoPorPosto = new ListarAgendamentoPorPostoController()
 const listarAgendamentoPorBI = new ListarAgendamentoPorBiController()
 const listarAgendamentoPorComprovativo = new ListarPorComprovativoController()
 const eliminarAgendamentoPorComprovativo = new EliminarAgendamentoPorComprovativoController()
+const listarAgendamentoByDataAgenda = new ListarAgendamentoByDataAgendaControler()
 
 agendamentosRouter.get("/:id", listarAgendamentoById.handle)
 
@@ -31,6 +33,8 @@ agendamentosRouter.get("/", (req, res) => {
 agendamentosRouter.get("/posto/:postoId", listarAgendamentoPorPosto.handle)
 
 agendamentosRouter.get("/comprovativo/:comprovativo", listarAgendamentoPorComprovativo.handle)
+
+agendamentosRouter.get("/dataAgenda/:dataAgenda", listarAgendamentoByDataAgenda.handle)
 
 agendamentosRouter.delete("/comprovativo/eliminar/:comprovativo", eliminarAgendamentoPorComprovativo.handle)
 

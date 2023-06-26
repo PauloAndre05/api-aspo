@@ -13,4 +13,4 @@ const listarConfirmadoPorPosto = new ListarConfirmadoPorPostoControler()
 
 confirmadoRouter.post("/", criarConfirmado.handle)
 confirmadoRouter.get("/", listarConfirmado.handle)
-confirmadoRouter.get("posto/:postoId", listarConfirmadoPorPosto.handle)
+confirmadoRouter.get("/posto/:postoId", listarConfirmadoPorPosto.handle)
