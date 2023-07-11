@@ -27,7 +27,7 @@ export class ObterHorariosDisponiveisUseCase {
         for(const horario of horarios) {
             const totalAgendamentos = await this.agendamentoRepository.getTotalBookingsForTheTime(dataAgenda, horario.id, postoId);
 
-            if (totalAgendamentos < 10) {
+            if (totalAgendamentos < 5) {
                 horariosDisponiveis.push({
                     id: horario.id,
                     hora: horario.hora

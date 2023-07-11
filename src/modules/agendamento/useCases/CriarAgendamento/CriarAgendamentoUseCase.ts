@@ -45,11 +45,12 @@ export class CriarAgendamentoUseCase {
 
         const totalBookingsForTheTime = await this.agendamentoRepository.getTotalBookingsForTheTime(dataAgenda, horaId, postoId);
 
-        if(totalBookingsForTheTime === 10) {
+        if(totalBookingsForTheTime === 5) {
             throw new RequestError("Limite de agendamentos atingido neste horário", 400)
         }
 
         const comprovativo = await this.generateEvidenceCode(dataAgenda, servicoId, totalBookingsForTheDate);
+        
 
         const agendamento = await this.agendamentoRepository.create({ dataAgenda, servicoId, postoId, telefone, email, bi, horaId, nome, comprovativo })   
         
